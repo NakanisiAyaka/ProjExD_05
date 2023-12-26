@@ -7,7 +7,7 @@ pygame.init()
 
 screen = pygame.display.set_mode((800, 600))
 # screen.fill((150, 150, 150))
-pygame.display.set_caption('Invaders Game')
+pygame.display.set_caption('ex05/Invader Game')
 
 # Player
 playerImg = pygame.image.load('ex05/player.png')
@@ -18,7 +18,8 @@ playerX_change = 0
 enemyImg = pygame.image.load('ex05/enemy.png')
 enemyX = random.randint(0, 736)
 enemyY = random.randint(50, 150)
-enemyX_change, enemyY_change = 4, 40
+enemyX_change = random.randint(1, 7)  # 速度ランダム
+enemyY_change = 0  # 横方向にのみ移動
 
 # Bullet
 bulletImg = pygame.image.load('ex05/bullet.png')
@@ -101,11 +102,9 @@ while running:
         break
     enemyX += enemyX_change
     if enemyX <= 0: #左端に来たら
-        enemyX_change = 1#4 
-        enemyY += enemyY_change
+        enemyX_change = random.randint(1, 7)  # 速度ランダム
     elif enemyX >=736: #右端に来たら
-        enemyX_change = -1#-4
-        enemyY += enemyY_change
+        enemyX_change = random.randint(-7, -1)  # 速度ランダム
 
     #ここ
     if shield_state == 'active' and isCollision(enemyX, enemyY, playerX, playerY, shield_radius, 32):
